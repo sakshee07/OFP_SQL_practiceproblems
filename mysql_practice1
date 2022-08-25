@@ -1,0 +1,42 @@
+create database oraclepractice;
+use  oraclepractice;
+create table suppliers(
+supplier_id int,
+supplier_name varchar (20));
+insert into  suppliers(supplier_id ,supplier_name)
+values (10000,'IBM'),(10001, 'HP'),(10002,'NVDIA'),(10003,'Microsoft');
+create table orders(
+order_id int,
+supplier_id int,
+order_date date
+);
+drop table orders;
+
+
+
+insert into  orders(order_id , supplier_id ,order_date)
+ values (500125, 10000, '2003-05-12'),(500126, 10001, '2003-05-13'),(500125, 10004, '2003-05-14');
+
+SELECT suppliers.supplier_id, suppliers.supplier_name, orders.order_date
+FROM suppliers
+LEFT OUTER JOIN orders
+ON suppliers.supplier_id = orders.supplier_id;
+
+SELECT orders.order_id, orders.order_date, suppliers.supplier_name
+FROM suppliers
+RIGHT OUTER JOIN orders
+ON suppliers.supplier_id = orders.supplier_id;
+
+
+SELECT suppliers.supplier_id, suppliers.supplier_name, orders.order_date
+FROM suppliers
+FULL OUTER JOIN orders
+ON suppliers.supplier_id = orders.supplier_id;
+
+CREATE INDEX supplier_idx
+  ON suppliers (supplier_name);
+
+
+ALTER index index_name
+  RENAME TO new_index_name;
+
